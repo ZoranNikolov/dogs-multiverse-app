@@ -1,14 +1,29 @@
-<div class="card mt-5">
+<div class="card mt-5 shadow-effect">
 	<div class="card-body">
 		<h4>Leave a Comment</h4>
 		<p>You can leave a comment using this comment form</p>
 
-		<form >
+		<form>
 			<div class="form-group">
 				<label for="">Name</label>
-				<input type="text" class="form-control" placeholder="">
+				<input
+					type="text"
+					class="form-control shadow-effect"
+					placeholder="Enter your name here"
+				/>
 			</div>
-		</form>
 
+			<div class="form-group">
+				<label for="">Comment</label>
+				<textarea
+					cols="30"
+					rows="10"
+					class="form-control"
+					placeholder="Add your comment here"
+				></textarea>
+			</div>
+
+			<button class="btn btn-info">Add a Comment</button>
+		</form>
 	</div>
 </div>
