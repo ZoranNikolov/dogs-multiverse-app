@@ -4,16 +4,16 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
-  --primary-color: #026467;
-  --secondary-color: #e5f5ea;
-  --body-text-color: #596392;
-  --navbar-footer-color: #f9f9f9;
+	--primary-color: #026467;
+	--secondary-color: #e5f5ea;
+	--body-text-color: #596392;
+	--navbar-footer-color: #f9f9f9;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  color: var(--body-text-color);
+	font-family: "Roboto", sans-serif;
+	font-size: 12px;
+	color: var(--body-text-color);
 }
 
 .site-logo {
@@ -32,6 +32,50 @@ body {
 	box-shadow: 0px 0px 33px -10px rgba(71, 114, 25, 0.3);
 }
 
-.bg-theme{
+.bg-theme {
 	background-color: var(--primary-color);
+}
+
+.form-group {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+.form-inline {
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+}
+
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -5px;
+	margin-left: -5px;
+}
+
+.form-row > .col {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+label {
+	margin-bottom: 0.5rem;
+}
+
+.btn-theme {
+	height: 58px;
+	width: 200px;
+	border: none;
+	font-size: 13px;
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+}
+
+input[type="text"],
+input[type="email"] {
+	height: 60px;
+	padding-left: 20px;
+	font-size: 13px;
+	width: 100%;
 }
