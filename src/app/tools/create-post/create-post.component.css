@@ -11,3 +11,18 @@ textarea {
 	border: none;
 	outline: none;
 }
+
+#post-preview {
+	text-align: right;
+	margin-top: 1em;
+}
+
+#post-preview-image {
+	object-fit: cover;
+	object-position: center;
+	width: 150px;
+	height: 100px;
+	margin-right: 1em;
+	border-radius: 1em;
+	border: 1px dashed gray;
+}
