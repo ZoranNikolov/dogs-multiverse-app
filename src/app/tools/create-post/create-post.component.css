@@ -1,0 +1,13 @@
+#photo-upload {
+	display: none;
+}
+
+textarea {
+	font-size: 1.5em;
+	padding: 1em;
+	resize: none;
+	width: 250px;
+	min-height: 200px;
+	border: none;
+	outline: none;
+}
