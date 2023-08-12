@@ -32,6 +32,7 @@ export class PostFeedComponent {
 			onComplete: (result) => {
 				result.docs.forEach((doc) => {
 					let post = <PostData>doc.data();
+					post.postId = doc.id;
 					this.posts.push(post);
 				});
 			},
@@ -44,4 +45,5 @@ export interface PostData {
 	comment: string;
 	creatorId: string;
 	imageUrl?: string;
+	postId: string;
 }

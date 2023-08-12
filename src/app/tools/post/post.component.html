@@ -1,14 +1,14 @@
 <mat-card>
 	<mat-card-header>
-		<mat-card-title>Name</mat-card-title>
-		<mat-card-subtitle>Description</mat-card-subtitle>
+		<mat-card-title>{{creatorName}}</mat-card-title>
+		<mat-card-subtitle>{{creatorDescription}}</mat-card-subtitle>
 	</mat-card-header>
-	<img mat-card-image [src]="postData.imageUrl"> <!-- Use [src] binding instead of interpolation -->
+	<img mat-card-image [src]="postData.imageUrl">
 	<mat-card-content>
 		{{ postData.comment }}
 	</mat-card-content>
 	<mat-card-actions>
-		<mat-icon class="action-item" color="warn">chat_buble_outline</mat-icon>
+		<mat-icon (click)="onReplyClick()" class="action-item" color="warn">chat_buble_outline</mat-icon>
 		<mat-icon class="action-item" color="warn">favorite_border</mat-icon>
 		<mat-icon class="action-item" color="warn">save</mat-icon>
 	</mat-card-actions>
