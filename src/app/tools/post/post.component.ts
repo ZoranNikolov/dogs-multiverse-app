@@ -3,6 +3,7 @@ import { PostData } from 'src/app/pages/post-feed/post-feed.component';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
 	selector: 'app-post',
@@ -11,12 +12,9 @@ import { ReplyComponent } from '../reply/reply.component';
 })
 export class PostComponent {
 	@Input() postData!: PostData;
-	@Input() loggedIn!: boolean | undefined;
-	@Input() getUserDocument!: () => any;
 	creatorName!: string;
 	creatorDescription!: string;
 	firestore = new FirebaseTSFirestore();
-	selectedPost: any;
 
 	constructor(private dialog: MatDialog) {}
 
@@ -25,19 +23,11 @@ export class PostComponent {
 	}
 
 	onReplyClick() {
-		this.dialog.open(ReplyComponent, { data: this.postData.postId });
+		this.dialog.open(ReplyComponent, {data: this.postData.postId});
 	}
 
 	onEditClick(post: any) {
-		// Set the selected post for editing
-		this.selectedPost = post;
-		console.log('Editing post:', this.selectedPost);
-	}
-
-	onDeleteClick(post: any) {
-		// Set the selected post for deletion
-		this.selectedPost = post;
-		console.log('Deleting post:', this.selectedPost);
+		this.dialog.open(EditComponent, {data: this.postData});
 	}
 
 	getCreatorInfo() {
@@ -51,6 +41,5 @@ export class PostComponent {
 				}
 			},
 		});
-		// console.log(this.postData)
 	}
 }

@@ -6,7 +6,6 @@ import {
 	Limit,
 	OrderBy,
 } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Component({
 	selector: 'app-post-feed',
@@ -16,18 +15,10 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 export class PostFeedComponent {
 	firestore = new FirebaseTSFirestore();
 	posts: PostData[] = [];
-	auth = new FirebaseTSAuth();
-
 	constructor(private dialog: MatDialog) {}
 
 	ngOnInit(): void {
 		this.getPosts();
-	}
-
-	private static userDocument: UserDocument | null = null;
-
-	getUserDocument() {
-		return PostFeedComponent.userDocument;
 	}
 
 	onCreatePostClick() {
@@ -48,10 +39,6 @@ export class PostFeedComponent {
 			onFail: (err) => {},
 		});
 	}
-
-	loggedIn(): boolean {
-		return this.auth.isSignedIn();
-	}
 }
 
 export interface PostData {
@@ -59,10 +46,4 @@ export interface PostData {
 	creatorId: string;
 	imageUrl?: string;
 	postId: string;
-}
-
-export interface UserDocument {
-	publicName: string;
-	description: string;
-	userId: string;
 }

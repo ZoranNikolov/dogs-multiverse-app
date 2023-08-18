@@ -1,1 +1,11 @@
-<p>edit works!</p>
+<p>Edit</p>
+
+<mat-card>
+	<mat-card-header>
+		<mat-card-subtitle>{{ postData.creatorDescription }}</mat-card-subtitle>
+	</mat-card-header>
+	<!-- <img mat-card-image [src]="postData.imageUrl"> -->
+	<mat-card-content>
+		{{ postData.comment }}
+	</mat-card-content>
+</mat-card>
