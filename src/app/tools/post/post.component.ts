@@ -4,6 +4,7 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
 import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
 import { EditComponent } from '../edit/edit.component';
+import { DeleteComponent } from '../delete/delete.component';
 
 @Component({
 	selector: 'app-post',
@@ -23,12 +24,32 @@ export class PostComponent {
 	}
 
 	onReplyClick() {
-		this.dialog.open(ReplyComponent, {data: this.postData.postId});
+		this.dialog.open(ReplyComponent, { data: this.postData.postId });
 	}
 
 	onEditClick(post: any) {
-		this.dialog.open(EditComponent, {data: this.postData});
+		this.dialog.open(EditComponent, { data: this.postData });
 	}
+
+	onDeleteClick(postData: any) {
+		const dialogRef = this.dialog.open(DeleteComponent, {
+		  data: { postData: postData },
+		});
+	  
+		dialogRef.afterClosed().subscribe((result) => {
+		  if (result === 'delete') {
+			const db = firebase.firestore();
+			const docRef = db.collection('Posts').doc(postData.postId);
+	  
+			docRef.delete().then(() => {
+			  console.log('Post deleted successfully.');
+			  // You might want to update your UI or perform other actions
+			}).catch((error: string) => {
+			  console.error('Error deleting post:', error);
+			});
+		  }
+		});
+	  }
 
 	getCreatorInfo() {
 		this.firestore.getDocument({

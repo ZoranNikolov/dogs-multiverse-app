@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { PostComponent } from './tools/post/post.component';
 import { ReplyComponent } from './tools/reply/reply.component';
 import { EditComponent } from './tools/edit/edit.component';
 import { DeleteComponent } from './tools/delete/delete.component';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @NgModule({
 	declarations: [
@@ -31,12 +33,12 @@ import { DeleteComponent } from './tools/delete/delete.component';
 		AuthenticatorComponent,
 		EmailVerificationComponent,
 		ProfileComponent,
-  PostFeedComponent,
-  CreatePostComponent,
-  PostComponent,
-  ReplyComponent,
-  EditComponent,
-  DeleteComponent,
+		PostFeedComponent,
+		CreatePostComponent,
+		PostComponent,
+		ReplyComponent,
+		EditComponent,
+		DeleteComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -47,8 +49,9 @@ import { DeleteComponent } from './tools/delete/delete.component';
 		MatCardModule,
 		MatDialogModule,
 		MatIconModule,
+		FormsModule,
 	],
-	providers: [],
+	providers: [FirebaseTSFirestore],
 	bootstrap: [AppComponent],
 })
 export class AppModule {
