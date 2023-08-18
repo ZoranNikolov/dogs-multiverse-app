@@ -21,6 +21,8 @@ import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 import { CreatePostComponent } from './tools/create-post/create-post.component';
 import { PostComponent } from './tools/post/post.component';
 import { ReplyComponent } from './tools/reply/reply.component';
+import { EditComponent } from './tools/edit/edit.component';
+import { DeleteComponent } from './tools/delete/delete.component';
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,8 @@ import { ReplyComponent } from './tools/reply/reply.component';
   CreatePostComponent,
   PostComponent,
   ReplyComponent,
+  EditComponent,
+  DeleteComponent,
 	],
 	imports: [
 		BrowserModule,

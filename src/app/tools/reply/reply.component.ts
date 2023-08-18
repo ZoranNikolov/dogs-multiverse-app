@@ -1,28 +1,69 @@
 import { Component, Inject } from '@angular/core';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import {
+	FirebaseTSFirestore,
+	OrderBy,
+} from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
-  selector: 'app-reply',
-  templateUrl: './reply.component.html',
-  styleUrls: ['./reply.component.css']
+	selector: 'app-reply',
+	templateUrl: './reply.component.html',
+	styleUrls: ['./reply.component.css'],
 })
 export class ReplyComponent {
 	firestore = new FirebaseTSFirestore();
-	constructor(@Inject(MAT_DIALOG_DATA) private postId: string){  }
+	comments: Comment[] = [];
+	constructor(@Inject(MAT_DIALOG_DATA) private postId: string) {}
 
-	onSendClick(commentInput: HTMLInputElement){
-		this.firestore.create(
-			{
-				path: ["Posts", this.postId, "PostComments"],
-				data: {
-					comment: commentInput.value,
-					creatorId: "",
-					creatorName: "",
-					timestamp: FirebaseTSApp.getFirestoreTimestamp()
-				}
-			}
-		)
+	ngOnInit(): void {
+		this.getComments();
 	}
+
+	isCommentCreator(comment: Comment) {
+		try {
+			return comment.creatorId == AppComponent.getUserDocument()?.userId;
+		} catch (error) {
+			return error;
+		}
+	}
+
+	getComments() {
+		this.firestore.listenToCollection({
+			name: 'Post Comments',
+			path: ['Posts', this.postId, 'PostComments'],
+			where: [new OrderBy('timestamp', 'asc')],
+			onUpdate: (result) => {
+				result.docChanges().forEach((postCommentDoc) => {
+					if (postCommentDoc.type == 'added') {
+						this.comments.unshift(<Comment>postCommentDoc.doc.data());
+					}
+				});
+			},
+		});
+	}
+
+	onSendClick(commentInput: HTMLInputElement) {
+		if (!(commentInput.value.length > 0)) return;
+		this.firestore.create({
+			path: ['Posts', this.postId, 'PostComments'],
+			data: {
+				comment: commentInput.value,
+				creatorId: AppComponent.getUserDocument()?.userId,
+				creatorName: AppComponent.getUserDocument()?.publicName,
+				timestamp: FirebaseTSApp.getFirestoreTimestamp(),
+			},
+			onComplete: (docId) => {
+				commentInput.value = '';
+			},
+		});
+	}
+}
+
+export interface Comment {
+	creatorId: string;
+	creatorName: string;
+	comment: string;
+	timestamp: firebase.default.firestore.Timestamp;
 }

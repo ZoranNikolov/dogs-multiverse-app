@@ -15,13 +15,15 @@ export class AppComponent {
 	auth = new FirebaseTSAuth();
 	firestore = new FirebaseTSFirestore();
 	userHasProfile = true;
-	userDocument!: UserDocument;
+	private static userDocument: UserDocument | null = null;
 
 	constructor(private loginSheet: MatBottomSheet, private router: Router) {
 		this.auth.listenToSignInStateChanges((user) => {
 			this.auth.checkSignInState({
 				whenSignedIn: (user) => {},
-				whenSignedOut: (user) => {},
+				whenSignedOut: (user) => {
+					AppComponent.userDocument = null;
+				},
 				whenSignedInAndEmailNotVerified: (user) => {
 					this.router.navigate(['emailVerification']);
 				},
@@ -32,7 +34,12 @@ export class AppComponent {
 			});
 		});
 	}
-
+	public static getUserDocument() {
+		return AppComponent.userDocument;
+	}
+	getUsername() {
+		return AppComponent.userDocument?.publicName;
+	}
 	getUserProfile() {
 		const currentUser = this.auth.getAuth().currentUser;
 
@@ -41,16 +48,21 @@ export class AppComponent {
 				name: 'Getting Document',
 				path: ['Users', currentUser.uid],
 				onUpdate: (result) => {
-					this.userDocument = <UserDocument>result.data();
+					AppComponent.userDocument = result.exists
+						? (result.data() as UserDocument)
+						: null;
 					this.userHasProfile = result.exists;
-					if(this.userHasProfile){
-						this.router.navigate(["postfeed"]);
+
+					if (AppComponent.userDocument) {
+						AppComponent.userDocument.userId = currentUser.uid;
+						if (this.userHasProfile) {
+							this.router.navigate(['postfeed']);
+						}
 					}
 				},
 			});
 		} else {
 			console.log('No current user');
-			
 		}
 	}
 
@@ -70,4 +82,5 @@ export class AppComponent {
 export interface UserDocument {
 	publicName: string;
 	description: string;
+	userId: string;
 }

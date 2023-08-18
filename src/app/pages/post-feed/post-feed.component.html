@@ -1,4 +1,12 @@
 <div id="post-feed">
-	<app-post *ngFor="let post of posts" [postData]="post"></app-post>
+	<app-post
+  		*ngFor="let post of posts"
+  		[postData]="post"
+  		[loggedIn]="loggedIn()"
+  		[getUserDocument]="getUserDocument"
+></app-post>
+
 </div>
-<button (click)="onCreatePostClick()" mat-fab color="warn" id="post-button"><mat-icon>add</mat-icon></button>
+<button (click)="onCreatePostClick()" mat-fab color="warn" id="post-button">
+	<mat-icon>add</mat-icon>
+</button>
