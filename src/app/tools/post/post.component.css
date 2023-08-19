@@ -6,3 +6,18 @@
 mat-card {
 	margin-bottom: 50px;
 }
+
+mat-card-title{
+	font-weight: bold;
+}
+
+mat-card-subtitle {
+	font-style: italic;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+mat-card-content{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

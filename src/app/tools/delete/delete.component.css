@@ -1,0 +1,35 @@
+mat-card {
+	background-color: #f5f5f5;
+	padding: 1em;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+mat-card-header {
+	color: #333;
+	padding: 0.5em 1em;
+}
+
+mat-card-title {
+	font-size: 1.2rem;
+	margin: 0;
+}
+mat-card-content {
+	margin-top: 1em;
+}
+
+p {
+	font-size: 1rem;
+	margin-bottom: 1em;
+}
+form {
+	margin-top: 1em;
+}
+
+button[type="submit"] {
+	margin-top: 1em;
+	background-color: #dc3545; /* Bootstrap's delete red color */
+}
+button[type="submit"]:hover {
+	background-color: #c82333; /* Darker shade for hover effect */
+}

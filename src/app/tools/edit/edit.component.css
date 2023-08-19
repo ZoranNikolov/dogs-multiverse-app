@@ -1,0 +1,37 @@
+mat-card {
+	background-color: #f5f5f5;
+	padding: 1em;
+	width: 500px;
+	max-width: 600px;
+	margin: 0 auto; /* Center the card horizontally */
+}
+
+mat-card-header{
+	background-color: #f5f5f5;
+	outline: none;
+	padding-bottom: 10px;
+}
+
+mat-card-content{
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+textarea {
+	width: 90%;
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	resize: vertical; /* Allow vertical resizing */
+	font-size: 1rem;
+}
+
+button[type="submit"] {
+	margin-top: 1em;
+}
+
+form {
+	width: 100%; /* Make the form take up the full card width */
+	padding-top: 0;
+	padding-bottom: 0;
+}

@@ -1,5 +1,14 @@
-<h3>Are you sure you want to delete this post?</h3>
-<form (ngSubmit)="onDeleteSubmit()" #deleteForm="ngForm">
-	<p>{{postData.comment}}</p>
-	<button mat-flat-button type="submit" color="warn">Yes, Delete</button>
-</form>
+<mat-card>
+
+	<mat-card-header>
+		<mat-card-title>Are you sure you want to delete this post?</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+
+		<form (ngSubmit)="onDeleteSubmit()" #deleteForm="ngForm">
+			<p>{{postData.comment}}</p>
+			<button mat-flat-button type="submit" color="warn">Yes, Delete</button>
+		</form>
+	</mat-card-content>
+	
+</mat-card>

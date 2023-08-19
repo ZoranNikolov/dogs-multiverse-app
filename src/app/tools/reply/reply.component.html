@@ -1,6 +1,10 @@
-<p>Reply</p>
+<mat-card-header>
+	<mat-card-title>Reply</mat-card-title>
+</mat-card-header>
+
 <div id="reply-box">
-	<div *ngFor="let comment of comments" [ngClass]="{'comment-container': true, 'creator-comment-container': isCommentCreator(comment)}">
+	<div *ngFor="let comment of comments"
+		[ngClass]="{'comment-container': true, 'creator-comment-container': isCommentCreator(comment)}">
 		<div>
 			<p class="comment-name">{{comment?.creatorName}}</p>
 			<p [ngClass]="{'comment': true, 'creator-comment': isCommentCreator(comment)}">{{comment?.comment}}</p>
