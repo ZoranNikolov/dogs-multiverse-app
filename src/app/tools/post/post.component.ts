@@ -32,23 +32,7 @@ export class PostComponent {
 	}
 
 	onDeleteClick(postData: any) {
-		const dialogRef = this.dialog.open(DeleteComponent, {
-		  data: { postData: postData },
-		});
-	  
-		dialogRef.afterClosed().subscribe((result) => {
-		  if (result === 'delete') {
-			const db = firebase.firestore();
-			const docRef = db.collection('Posts').doc(postData.postId);
-	  
-			docRef.delete().then(() => {
-			  console.log('Post deleted successfully.');
-			  // You might want to update your UI or perform other actions
-			}).catch((error: string) => {
-			  console.error('Error deleting post:', error);
-			});
-		  }
-		});
+		this.dialog.open(DeleteComponent, { data: this.postData })
 	  }
 
 	getCreatorInfo() {

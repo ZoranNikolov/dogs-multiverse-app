@@ -1,22 +1,38 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, ChangeDetectorRef } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
-  selector: 'app-delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.css'],
+	selector: 'app-delete',
+	templateUrl: './delete.component.html',
+	styleUrls: ['./delete.component.css'],
 })
 export class DeleteComponent {
-  constructor(
-    private dialogRef: MatDialogRef<DeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+	editedText: string; 
+	forceUpdate!: boolean;
 
-  confirmDelete() {
-    this.dialogRef.close('delete');
-  }
+	constructor(
+		@Inject(MAT_DIALOG_DATA) public postData: any,
+		private firestore: FirebaseTSFirestore,
+		private dialog: MatDialogRef<DeleteComponent>
+	) {
+		this.editedText = this.postData.comment;
+	}
 
-  cancelDelete() {
-    this.dialogRef.close('cancel');
-  }
+	ngOnInit(): void {
+		// console.log(this.postData);
+	}
+
+	onDeleteSubmit() {
+		console.log('delete button clicked');
+
+		this.firestore.delete({
+			path: ['Posts', this.postData.postId],
+			onComplete: () => {
+				console.log('Post text deleted successfully.');
+				this.dialog.close();
+				location.reload();
+			},
+		});
+	}
 }

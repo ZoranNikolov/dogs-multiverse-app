@@ -45,6 +45,7 @@ export class CreatePostComponent {
 					},
 					onComplete: (docId) => {
 						this.dialog.close();
+						location.reload();
 					},
 				});
 			},

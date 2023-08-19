@@ -1,11 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import {
-	FirebaseTSFirestore,
-	OrderBy,
-} from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
-import { AppComponent } from 'src/app/app.component';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-edit',
@@ -13,38 +8,31 @@ import { AppComponent } from 'src/app/app.component';
 	styleUrls: ['./edit.component.css'],
 })
 export class EditComponent {
-	editedText: string; // Property to hold the edited text
+	editedText: string;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public postData: any,
-		private firestore: FirebaseTSFirestore
+		private firestore: FirebaseTSFirestore,
+		private dialog: MatDialogRef<EditComponent>
 	) {
-		this.editedText = this.postData.comment; // Initialize with original text
+		this.editedText = this.postData.comment;
 	}
 
 	ngOnInit(): void {
-		// Now you can use this.postData to access the selected post's data
-		console.log(this.postData);
+		// console.log(this.postData);
 	}
 
 	onEditSubmit() {
-		// Update the comment property in the post
 		this.firestore.update({
-			path: ['Posts', this.postData.postId], // Assuming you have postId in postData
+			path: ['Posts', this.postData.postId],
 			data: {
 				comment: this.editedText,
 			},
 			onComplete: () => {
 				console.log('Post text updated successfully.');
-				// Close the dialog or perform any other necessary actions
+				this.dialog.close();
+				location.reload();
 			},
 		});
 	}
 }
-
-// export interface Comment {
-// 	creatorId: string;
-// 	creatorName: string;
-// 	comment: string;
-// 	timestamp: firebase.default.firestore.Timestamp;
-//   }
