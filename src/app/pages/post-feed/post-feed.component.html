@@ -1,4 +1,10 @@
+<div id="nav-bar">
+	<div id="nav-bar-right" class="nav-bar-itmes">
+		<div *ngIf="loggedIn()" (click)="onLogoutClick()" class="nav-bar-items">Logout</div>
+	</div>
+</div>
 <div id="post-feed">
 	<app-post *ngFor="let post of posts" [postData]="post"></app-post>
+	<!-- <app-post *ngFor="let post of posts" [postData]="post"></app-post> -->
 </div>
 <button (click)="onCreatePostClick()" mat-fab color="warn" id="post-button"><mat-icon>add</mat-icon></button>

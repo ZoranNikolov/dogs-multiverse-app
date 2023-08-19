@@ -15,6 +15,7 @@ import { AppComponent } from 'src/app/app.component';
 export class ReplyComponent {
 	firestore = new FirebaseTSFirestore();
 	comments: Comment[] = [];
+
 	constructor(@Inject(MAT_DIALOG_DATA) private postId: string) {}
 
 	ngOnInit(): void {
@@ -45,19 +46,28 @@ export class ReplyComponent {
 	}
 
 	onSendClick(commentInput: HTMLInputElement) {
-		if (!(commentInput.value.length > 0)) return;
-		this.firestore.create({
-			path: ['Posts', this.postId, 'PostComments'],
-			data: {
-				comment: commentInput.value,
-				creatorId: AppComponent.getUserDocument()?.userId,
-				creatorName: AppComponent.getUserDocument()?.publicName,
-				timestamp: FirebaseTSApp.getFirestoreTimestamp(),
-			},
-			onComplete: (docId) => {
-				commentInput.value = '';
-			},
-		});
+		const userDocument = AppComponent.getUserDocument();
+		
+		if (userDocument && userDocument.userId) {
+			const newCommentData = {
+			  comment: commentInput.value,
+			  creatorId: userDocument.userId,
+			  creatorName: userDocument.publicName,
+			  timestamp: FirebaseTSApp.getFirestoreTimestamp(),
+			};
+
+			this.firestore
+			.create({
+			  path: ['Posts', this.postId, 'PostComments'],
+			  data: newCommentData,
+			})
+			.then(() => {
+			  commentInput.value = '';
+			  // No need to manually refresh comments, onUpdate will take care of it
+			});
+		} else {
+		  console.error('User data is unavailable. Cannot create comment.');
+		}
 	}
 }
 

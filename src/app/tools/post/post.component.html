@@ -8,8 +8,8 @@
 		{{ postData.comment }}
 	</mat-card-content>
 	<mat-card-actions>
-		<mat-icon (click)="onReplyClick()" class="action-item" color="warn">chat_buble_outline</mat-icon>
-		<mat-icon (click)="onEditClick(postData)" class="action-item" color="warn">edit</mat-icon>
-		<mat-icon (click)="onDeleteClick(postData)" class="action-item" color="warn">delete</mat-icon>
+		<mat-icon (click)="onReplyClick()" class="action-item" color="primary">chat_buble_outline</mat-icon>
+		<mat-icon *ngIf="isPostAuthor()" (click)="onEditClick(postData)" class="action-item" color="accent">edit</mat-icon>
+		<mat-icon *ngIf="isPostAuthor()" (click)="onDeleteClick(postData)" class="action-item" color="warn">delete</mat-icon>
 	</mat-card-actions>
 </mat-card>

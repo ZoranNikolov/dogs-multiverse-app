@@ -16,11 +16,17 @@ export class AppComponent {
 	firestore = new FirebaseTSFirestore();
 	userHasProfile = true;
 	private static userDocument: UserDocument | null = null;
-
+	public loggedInUserId: string | null = null;
+	
 	constructor(private loginSheet: MatBottomSheet, private router: Router) {
 		this.auth.listenToSignInStateChanges((user) => {
 			this.auth.checkSignInState({
-				whenSignedIn: (user) => {},
+				whenSignedIn: (user) => {
+					this.getUserProfile();
+					// console.log('Navigating to postfeed...');
+					// console.log('this is auth info ', this.auth.getAuth().currentUser?.uid);
+					
+				},
 				whenSignedOut: (user) => {
 					AppComponent.userDocument = null;
 				},

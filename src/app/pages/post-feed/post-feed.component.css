@@ -5,8 +5,44 @@
 }
 
 #post-feed {
-	max-width: 500px;
-	margin-top: 5em;
+	max-width: 1000px;
+	margin-top: 10em;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#nav-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5em;
+	z-index: 10;
+}
+#nav-bar-left,
+#nav-bar-right {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 2em;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	color: black;
+}
+#nav-bar-right {
+	justify-content: flex-end;
+}
+.nav-bar-items {
+	font-size: 1em;
+	display: inline-block;
+	cursor: pointer;
+	margin-right: 1em;
+}
+/*
+#nav-bar-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 100%;
+}
+*/

@@ -1,7 +1,5 @@
 <h3>Are you sure you want to delete this post?</h3>
 <form (ngSubmit)="onDeleteSubmit()" #deleteForm="ngForm">
 	<p>{{postData.comment}}</p>
-  <!-- <button mat-flat-button color="warn" type="submit">Save Edit</button> -->
-  <button mat-flat-button color="warn" >Yes, Delete</button>
-  <button mat-flat-button type="submit" color="primary" >Cancel</button>
+	<button mat-flat-button type="submit" color="warn">Yes, Delete</button>
 </form>

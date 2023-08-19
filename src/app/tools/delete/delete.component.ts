@@ -31,7 +31,7 @@ export class DeleteComponent {
 			onComplete: () => {
 				console.log('Post text deleted successfully.');
 				this.dialog.close();
-				location.reload();
+				// location.reload();
 			},
 		});
 	}

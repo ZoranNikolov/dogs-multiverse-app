@@ -31,7 +31,7 @@ export class EditComponent {
 			onComplete: () => {
 				console.log('Post text updated successfully.');
 				this.dialog.close();
-				location.reload();
+				// location.reload();
 			},
 		});
 	}

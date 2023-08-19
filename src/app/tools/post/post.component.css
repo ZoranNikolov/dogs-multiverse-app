@@ -2,3 +2,7 @@
 	margin-left: 0.5em;
 	cursor: pointer;
 }
+
+mat-card {
+	margin-bottom: 50px;
+}
