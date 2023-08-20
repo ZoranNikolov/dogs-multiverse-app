@@ -23,9 +23,6 @@ export class AppComponent {
 			this.auth.checkSignInState({
 				whenSignedIn: (user) => {
 					this.getUserProfile();
-					// console.log('Navigating to postfeed...');
-					// console.log('this is auth info ', this.auth.getAuth().currentUser?.uid);
-					
 				},
 				whenSignedOut: (user) => {
 					AppComponent.userDocument = null;

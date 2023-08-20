@@ -18,9 +18,7 @@ export class EditComponent {
 		this.editedText = this.postData.comment;
 	}
 
-	ngOnInit(): void {
-		// console.log(this.postData);
-	}
+	ngOnInit(): void {}
 
 	onEditSubmit() {
 		this.firestore.update({
@@ -31,7 +29,6 @@ export class EditComponent {
 			onComplete: () => {
 				console.log('Post text updated successfully.');
 				this.dialog.close();
-				// location.reload();
 			},
 		});
 	}

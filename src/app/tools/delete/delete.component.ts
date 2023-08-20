@@ -8,7 +8,7 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
 	styleUrls: ['./delete.component.css'],
 })
 export class DeleteComponent {
-	editedText: string; 
+	editedText: string;
 	forceUpdate!: boolean;
 
 	constructor(
@@ -19,9 +19,7 @@ export class DeleteComponent {
 		this.editedText = this.postData.comment;
 	}
 
-	ngOnInit(): void {
-		// console.log(this.postData);
-	}
+	ngOnInit(): void {}
 
 	onDeleteSubmit() {
 		console.log('delete button clicked');
@@ -31,7 +29,6 @@ export class DeleteComponent {
 			onComplete: () => {
 				console.log('Post text deleted successfully.');
 				this.dialog.close();
-				// location.reload();
 			},
 		});
 	}

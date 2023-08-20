@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
 import { EditComponent } from '../edit/edit.component';
 import { DeleteComponent } from '../delete/delete.component';
-import { AuthenticatorComponent } from '../authenticator/authenticator.component'; 
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Component({
@@ -24,9 +23,6 @@ export class PostComponent {
 
 	ngOnInit(): void {
 		this.getCreatorInfo();
-		// console.log('this is current user id ', this.auth.getAuth().currentUser?.uid);
-		// console.log('this is post creator id ', this.postData.creatorId)
-		// this.isPostAuthor()
 	}
 
 	isPostAuthor(){

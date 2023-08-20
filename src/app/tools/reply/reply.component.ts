@@ -63,7 +63,6 @@ export class ReplyComponent {
 			})
 			.then(() => {
 			  commentInput.value = '';
-			  // No need to manually refresh comments, onUpdate will take care of it
 			});
 		} else {
 		  console.error('User data is unavailable. Cannot create comment.');
